@@ -1,0 +1,14 @@
+[Bb]in/
+[Oo]bj/
+[Pp]ublish/
+[Tt]estResults/
+.vs/
+.idea/
+*.user
+*.suo
+*.tmp
+*.log
+*.lnk
+
+# Local document engine; keep separate from the source repository.
+LibreOfficePortable/
