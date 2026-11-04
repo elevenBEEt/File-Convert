@@ -1,0 +1,148 @@
+<Application x:Class="SDS_Convert.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="AppBackground" Color="#F5DEB4" />
+        <SolidColorBrush x:Key="PanelBackground" Color="#FEE4C3" />
+        <SolidColorBrush x:Key="RaisedBackground" Color="#EBD2AF" />
+        <SolidColorBrush x:Key="HoverBackground" Color="#DFC29B" />
+        <SolidColorBrush x:Key="InputBackground" Color="#FFF6E8" />
+        <SolidColorBrush x:Key="BorderBrush" Color="#D1B48C" />
+        <SolidColorBrush x:Key="PrimaryText" Color="#452D20" />
+        <SolidColorBrush x:Key="SecondaryText" Color="#684731" />
+        <SolidColorBrush x:Key="MutedText" Color="#80634A" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#8B4513" />
+        <SolidColorBrush x:Key="AccentSurface" Color="#F0D6B2" />
+        <SolidColorBrush x:Key="AccentBorder" Color="#A0522D" />
+        <SolidColorBrush x:Key="WarningBrush" Color="#8B4513" />
+
+        <GeometryGroup x:Key="AppLogoGeometry">
+            <PathGeometry Figures="M4.226,20.925 A2,2 0 0 0 6,22 H18 A2,2 0 0 0 20,20 V8 A2.4,2.4 0 0 0 19.294,6.294 L15.706,2.706 A2.4,2.4 0 0 0 14,2 H6 A2,2 0 0 0 4,4 V7.127" />
+            <PathGeometry Figures="M14,2 V7 A1,1 0 0 0 15,8 H20" />
+            <PathGeometry Figures="M5,11 L2,14 M5,17 L2,14 H12" />
+        </GeometryGroup>
+        <GeometryGroup x:Key="ConvertGlyphGeometry">
+            <PathGeometry Figures="M2,9 L5,6 L8,9" />
+            <PathGeometry Figures="M13,18 H7 A2,2 0 0 1 5,16 V6" />
+            <PathGeometry Figures="M22,15 L19,18 L16,15" />
+            <PathGeometry Figures="M11,6 H17 A2,2 0 0 1 19,8 V18" />
+        </GeometryGroup>
+        <Pen x:Key="LogoPen" Brush="{StaticResource AccentBrush}" Thickness="1.8"
+             StartLineCap="Round" EndLineCap="Round" LineJoin="Round" />
+        <DrawingImage x:Key="AppLogoImage">
+            <DrawingImage.Drawing>
+                <GeometryDrawing Geometry="{StaticResource AppLogoGeometry}" Pen="{StaticResource LogoPen}" />
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="ConvertGlyphImage">
+            <DrawingImage.Drawing>
+                <GeometryDrawing Geometry="{StaticResource ConvertGlyphGeometry}" Pen="{StaticResource LogoPen}" />
+            </DrawingImage.Drawing>
+        </DrawingImage>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryText}" />
+            <Setter Property="Background" Value="{StaticResource RaisedBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="13,8" />
+            <Setter Property="MinHeight" Value="36" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Chrome" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Chrome" Property="Background" Value="{StaticResource HoverBackground}" />
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="{StaticResource AccentBorder}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Chrome" Property="Background" Value="{StaticResource AccentSurface}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Chrome" Property="Opacity" Value="0.45" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+                                <Setter TargetName="Chrome" Property="BorderThickness" Value="2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource InputBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryText}" />
+            <Setter Property="Background" Value="{StaticResource InputBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="9,7" />
+            <Setter Property="MinHeight" Value="34" />
+            <Setter Property="CaretBrush" Value="{StaticResource AccentBrush}" />
+            <Setter Property="SelectionBrush" Value="#D1B48C" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="Chrome" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6" Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False"
+                                          HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                                          VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="{StaticResource AccentBorder}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+                                <Setter TargetName="Chrome" Property="BorderThickness" Value="2" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Chrome" Property="Opacity" Value="0.65" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryText}" />
+            <Setter Property="Background" Value="{StaticResource RaisedBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="Padding" Value="8,6" />
+            <Setter Property="MinHeight" Value="34" />
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="{StaticResource SecondaryText}" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>
